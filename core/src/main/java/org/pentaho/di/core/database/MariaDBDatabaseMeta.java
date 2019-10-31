@@ -38,7 +38,7 @@ public class MariaDBDatabaseMeta extends MySQLDatabaseMeta {
   private static final Set<String> SHORT_MESSAGE_EXCEPTIONS = Sets.newHashSet( "org.mariadb.jdbc.internal.stream.MaxAllowedPacketException" );
 
   @Override public String[] getUsedLibraries() {
-    return new String[] { "mariadb-java-client-1.4.6.jar" };
+    return new String[] { "mariadb-java-client-2.3.0.jar" };
   }
 
   @Override public String getDriverClass() {
