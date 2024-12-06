@@ -11,6 +11,7 @@
  ******************************************************************************/
 package org.pentaho.di.core.database;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.pentaho.di.core.row.value.ValueMetaBigNumber;
 import org.pentaho.di.core.row.value.ValueMetaBinary;
@@ -28,6 +29,12 @@ import static org.junit.Assert.*;
 public class OceanBaseOracleDatabaseMetaTest {
 
     OceanBaseOracleDatabaseMeta nativeMeta;
+
+    @Before
+    public void setupBefore() {
+        nativeMeta = new OceanBaseOracleDatabaseMeta();
+        nativeMeta.setAccessType( DatabaseMeta.TYPE_ACCESS_NATIVE );
+    }
 
     @Test
     public void testOverriddenSettings() throws Exception {
