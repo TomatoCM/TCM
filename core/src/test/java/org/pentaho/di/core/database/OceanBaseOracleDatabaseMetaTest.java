@@ -41,7 +41,7 @@ public class OceanBaseOracleDatabaseMetaTest {
         // Tests the settings of the Oracle Database Meta
         // according to the features of the DB as we know them
 
-        assertEquals( 1521, nativeMeta.getDefaultDatabasePort() );
+        assertEquals( 2883, nativeMeta.getDefaultDatabasePort() );
         assertFalse( nativeMeta.supportsAutoInc() );
         assertFalse( nativeMeta.needsToLockAllTables() );
         assertEquals( "com.alipay.oceanbase.obproxy.mysql.jdbc.Driver", nativeMeta.getDriverClass() );
