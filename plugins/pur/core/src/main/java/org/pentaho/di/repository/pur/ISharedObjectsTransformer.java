@@ -26,10 +26,13 @@ import org.pentaho.di.shared.SharedObjectInterface;
 import org.pentaho.di.shared.SharedObjects;
 
 public interface ISharedObjectsTransformer extends ITransformer {
+
+  @Deprecated
   void loadSharedObjects( final RepositoryElementInterface element,
       final Map<RepositoryObjectType, List<? extends SharedObjectInterface>> sharedObjectsByType )
     throws KettleException;
 
+  @Deprecated
   void saveSharedObjects( final RepositoryElementInterface element, final String versionComment )
     throws KettleException;
 }

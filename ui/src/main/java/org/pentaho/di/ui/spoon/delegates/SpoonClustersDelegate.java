@@ -65,22 +65,6 @@ public class SpoonClustersDelegate extends SpoonSharedObjectDelegate {
       if ( dialog.open() ) {
         clusterSchemaManagementInterface.add( clusterSchema );
 
-        if ( spoon.rep != null ) {
-          try {
-            if ( !spoon.rep.getSecurityProvider().isReadOnly() ) {
-              spoon.rep.save( clusterSchema, Const.VERSION_COMMENT_INITIAL_VERSION, null );
-              if ( sharedObjectSyncUtil != null ) {
-                sharedObjectSyncUtil.reloadTransformationRepositoryObjects( false );
-              }
-            } else {
-              throw new KettleException( BaseMessages.getString(
-                PKG, "Spoon.Dialog.Exception.ReadOnlyRepositoryUser" ) );
-            }
-          } catch ( KettleException e ) {
-            showSaveError( clusterSchema, e );
-          }
-        }
-
         refreshTree();
       }
     } catch ( KettleException e ) {
@@ -115,13 +99,6 @@ public class SpoonClustersDelegate extends SpoonSharedObjectDelegate {
         if ( !newName.equalsIgnoreCase( originalName ) ) {
           manager.remove( originalName );
         }
-        if ( spoon.rep != null && clusterSchema.getObjectId() != null ) {
-          try {
-            saveSharedObjectToRepository( clusterSchema, null );
-          } catch ( KettleException e ) {
-            showSaveError( clusterSchema, e );
-          }
-        }
         refreshTree();
       }
     } catch ( KettleException e ) {
@@ -134,14 +111,6 @@ public class SpoonClustersDelegate extends SpoonSharedObjectDelegate {
   public void delClusterSchema( ClusterSchemaManagementInterface manager, ClusterSchema clusterSchema ) {
     try {
       manager.remove( clusterSchema );
-
-      if ( spoon.rep != null && clusterSchema.getObjectId() != null ) {
-        // remove the partition schema from the repository too...
-        spoon.rep.deleteClusterSchema( clusterSchema.getObjectId() );
-        if ( sharedObjectSyncUtil != null ) {
-          sharedObjectSyncUtil.deleteClusterSchema( clusterSchema );
-        }
-      }
 
       refreshTree();
     } catch ( KettleException e ) {
